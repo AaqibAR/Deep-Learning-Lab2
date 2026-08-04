@@ -1,0 +1,30 @@
+NN_sample.ipynb — Hidden Layer Size Tuning: Answers
+
+Results (5000 iterations each):
+1 hidden unit  : 67.5 %
+2 hidden units : 67.25 %
+3 hidden units : 90.75 %
+4 hidden units : 90.5 %
+5 hidden units : 91.25 %
+20 hidden units: 90.5 %
+50 hidden units: 90.75 %
+
+1. What happens when the number of hidden nodes increase?
+With very few hidden units (1-2), the model is too simple to represent a
+non-linear decision boundary, so it can only draw something close to a
+straight line and badly underfits the flower-shaped dataset (~67% accuracy).
+Once the hidden layer has 3 or more units, the model gains enough capacity
+to bend the decision boundary into the flower's curved petal shape, and
+accuracy jumps to ~90%. Beyond that, adding many more units (20, 50) does
+not meaningfully change the decision boundary or accuracy any further.
+
+2. Can you explain the pattern of the accuracy when the hidden nodes increase?
+The pattern is underfitting -> good fit -> diminishing returns. Below 3
+units, the network lacks the capacity to separate the two classes and
+underfits. Around 3-5 units, it has just enough capacity to fit the data
+well, and accuracy peaks (~91% at 5 units). Past that, extra hidden units
+add representational power the 2D dataset does not need, so accuracy
+plateaus rather than improving further -- the bottleneck stops being model
+capacity and becomes the inherent noise/overlap in the data itself. With a
+much larger or noisier dataset, over-parameterizing like this could
+eventually cause overfitting instead of a plateau.
